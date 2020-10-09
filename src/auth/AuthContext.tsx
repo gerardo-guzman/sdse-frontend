@@ -1,3 +1,11 @@
 import { createContext } from 'react';
+import { User } from '../models/user.model';
 
-export const AuthContext = createContext({});
+interface AuthModel {
+    user?: User;
+    dispatchUser?: React.Dispatch<any>;
+}
+
+
+
+export const AuthContext = createContext<AuthModel>({});

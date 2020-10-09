@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const About = () => {
+export const TeacherList = () => {
     return (
         <div>
-            <h1>About!</h1>
+            <h1>Profesores!</h1>
         </div>
     )
 }

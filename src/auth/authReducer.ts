@@ -1,6 +1,7 @@
 import { types } from '../helpers/types';
+import { User } from '../models/user.model';
 
-export const authReducer = (state = {}, action: any) => {
+export const authReducer = (state: User = {data: null, logged: false}, action: any) => {
     switch (action.type) {
         case types.login:
             return {

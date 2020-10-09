@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
@@ -17,7 +16,7 @@ import { NavBarClasses } from './NavBar.styles';
 export default function NavBar() {
     const classes = NavBarClasses();
     const [menuToggle, setMenuToggle] = useState<null | HTMLElement>(null);
-    const [isLogged, setLogged] = useState(true);
+    const [isLogged, setLogged] = useState(false);
 
     const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
         setMenuToggle(event.currentTarget);
