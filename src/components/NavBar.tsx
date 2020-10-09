@@ -17,7 +17,7 @@ import { NavBarClasses } from './NavBar.styles';
 export default function NavBar() {
     const classes = NavBarClasses();
     const [menuToggle, setMenuToggle] = useState<null | HTMLElement>(null);
-    const [isLogged, setLogged] = useState(false);
+    const [isLogged, setLogged] = useState(true);
 
     const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
         setMenuToggle(event.currentTarget);
@@ -60,7 +60,7 @@ export default function NavBar() {
                         <MenuItem onClick={handleMenuClose}>Cerrar sesión</MenuItem>
                     </Menu>
                     </> :
-                    <Button color="inherit" className={classes.title} >
+                    <Button color="inherit" className={classes.menuButton} >
                             <Link href="#"onClick={preventDefault} color="inherit">
                                 Ingresa
                             </Link>
