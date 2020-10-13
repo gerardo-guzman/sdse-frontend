@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AuthContext } from './auth/AuthContext';
-import NavBar from './components/NavBar';
+
 import { AppRoutes } from './routes/App.Routes';
 
 
@@ -10,7 +10,8 @@ import './app.css';
 import { authReducer } from './auth/authReducer';
 
 const init = () => {
-  return JSON.parse(localStorage.getItem('user')!) || { logged: false, }
+  //return JSON.parse(localStorage.getItem('user')!) || { logged: false, }
+  return { logged: true }
 }
 
 
@@ -32,7 +33,6 @@ function App() {
     <>
     <AuthContext.Provider value={{ user, dispatchUser }} >
     <ThemeProvider theme={theme}>
-      <NavBar />
       <AppRoutes />
     </ThemeProvider>
     </AuthContext.Provider>

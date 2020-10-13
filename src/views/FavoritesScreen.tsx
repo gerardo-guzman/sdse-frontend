@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const ProfileScreen = () => {
+export const FavoritesScreen = () => {
     return (
         <div>
-            <h1>PERFIL!</h1>
+            <h1>FAVORITOS</h1>
         </div>
     )
 }

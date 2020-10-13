@@ -18,7 +18,6 @@ createStyles({
   },
   search: {
     position: 'relative',
-    flexGrow: 1,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -50,11 +49,24 @@ createStyles({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '20ch',
+      width: '25ch',
       '&:focus': {
-        width: '20ch',
+        width: '35ch',
       },
     },
   },
+  rightIcons: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  spacingBox: {
+    flexGrow: 1,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  }
 }),
 );

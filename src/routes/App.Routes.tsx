@@ -11,12 +11,16 @@ import { SignUp } from '../views/SignUp';
 import { PublicRoute } from './Public.Routes';
 import { PrivateRoute } from './Private.Routes';
 import { AuthContext } from '../auth/AuthContext';
+import NavBar from '../components/NavBar';
+import { FavoritesScreen } from '../views/FavoritesScreen';
 
 export const AppRoutes = () => {
     const { user } = useContext(AuthContext);
+    console.log(user);
     return (
         <RouterDom>
             <>
+            <NavBar />
             <Switch>
                 <Route exact path='/' component={ About } />
                 <Route exact path='/briefs/:query' component={ BriefList } />
@@ -24,6 +28,7 @@ export const AppRoutes = () => {
                 <PublicRoute exact={true} path='/registrarse' component={ SignUp } isAuth={user?.logged!} />
                 <PrivateRoute exact={true} path='/perfil/:id' component={ ProfileScreen } isAuth ={user?.logged!} />
                 <PrivateRoute exact={true} path='/profesores' component={ TeacherList } isAuth ={user?.logged!} />
+                <PrivateRoute exact={true} path='/favoritos' component={ FavoritesScreen } isAuth={user?.logged!} />
                 <Redirect to='/' />
             </Switch>
             </>
