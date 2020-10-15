@@ -10,12 +10,35 @@ import Container from '@material-ui/core/Container';
 import { Link as RouterLink } from 'react-router-dom';
 import { CopyrightLabel } from '../components/CopyrightLabel';
 
+// hooks
+import { useValidation } from '../hooks/useValidation';
+import { signupValidations } from '../validations/signup.validations';
+
 // Styles
 import { signupStyles } from './signup.styles';
 
 
+
 export const SignUp = () => {
   const classes = signupStyles();
+  const [
+    inputValues,
+    handleInputChange,
+    errors
+  ] = useValidation({
+    fistName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    school: '',
+  }, signupValidations.errors);
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    school
+  } = inputValues;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -33,8 +56,12 @@ export const SignUp = () => {
                 variant="outlined"
                 required
                 fullWidth
+                value={firstName || ''}
                 id="firstName"
                 label="Nombre(s)"
+                onChange={(e) => handleInputChange(e, signupValidations.firstnameValidation)}
+                error={errors.firstName}
+                helperText={errors.firstName?"Números y carácteres especiales no válidos":null}
                 autoFocus
               />
             </Grid>
@@ -43,10 +70,15 @@ export const SignUp = () => {
                 variant="outlined"
                 required
                 fullWidth
+                value={lastName || ''}
                 id="lastName"
                 label="Apellido(s)"
+                onChange={(e) => handleInputChange(e, signupValidations.lastNameValidation)}
+                error={errors.lastName}
                 name="lastName"
+                helperText="Números y carácteres especiales no válidos"
                 autoComplete="lname"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -54,9 +86,13 @@ export const SignUp = () => {
                 variant="outlined"
                 required
                 fullWidth
+                value={email || ''}
+                onChange={(e) => handleInputChange(e, signupValidations.emailValidation)}
+                error={errors.email}
                 id="email"
                 label="Correo institucional"
                 name="email"
+                helperText="Se requiere un correo institucional"
                 autoComplete="email"
               />
             </Grid>
@@ -65,10 +101,14 @@ export const SignUp = () => {
                 variant="outlined"
                 required
                 fullWidth
+                value={password || ''}
+                onChange={(e) => handleInputChange(e, signupValidations.passwordValidation)}
+                error={errors.password}
                 name="password"
                 label="Contraseña"
                 type="password"
                 id="password"
+                helperText="La contraseña debe ser mayor a 8 cáracteres"
                 autoComplete="current-password"
               />
             </Grid>
@@ -76,9 +116,12 @@ export const SignUp = () => {
               <TextField
                 variant="outlined"
                 required
+                value={school || ''}
+                onChange={(e) => handleInputChange(e, signupValidations.schoolValidation)}
                 fullWidth
                 name="school"
                 label="Escuela"
+                helperText="Este campo es obligatorio"
                 id="school"
               />
             </Grid>

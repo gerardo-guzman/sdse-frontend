@@ -5,5 +5,5 @@ export const ProfileScreen = () => {
         <div>
             <h1>PERFIL!</h1>
         </div>
-    )
-}
+    );
+};

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthContext';
 //import Link from '@material-ui/core/Link';
 
 //styles
@@ -18,7 +19,8 @@ import { NavBarClasses } from './NavBar.styles';
 export default function NavBar() {
     const classes = NavBarClasses();
     const [menuToggle, setMenuToggle] = useState<null | HTMLElement>(null);
-    const [isLogged, setLogged] = useState(true);
+    const [isLogged, setLogged] = useState(false);
+    const { user } = useContext(AuthContext);
 
     const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
         setMenuToggle(event.currentTarget);
@@ -35,7 +37,7 @@ export default function NavBar() {
             <AppBar color="primary" position="static">
                 <Toolbar>
                     {
-                        isLogged?
+                        user?.logged ?
                     <>
                     <IconButton
                         edge="start"

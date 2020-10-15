@@ -10,8 +10,8 @@ import './app.css';
 import { authReducer } from './auth/authReducer';
 
 const init = () => {
-  //return JSON.parse(localStorage.getItem('user')!) || { logged: false, }
-  return { logged: true }
+  return JSON.parse(localStorage.getItem('user')!) || { logged: false, }
+  //return { logged: true }
 }
 
 
