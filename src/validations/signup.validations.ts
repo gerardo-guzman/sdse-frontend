@@ -1,6 +1,6 @@
 export const signupValidations = {
     // if true, a error is triggered
-    firstnameValidation: function (name: string) {
+    firstnameValidation: function (name: string = '') {
         if (name.length < 1) {
             return {
                 error: true,
@@ -10,10 +10,10 @@ export const signupValidations = {
         const invalidInput = /[^A-Za-zÀ-ÿ\s\u00f1\u00d1]/g;
         return {
             error: (invalidInput.test(name)),
-            mssg: 'Este campo no acepta números ni caracteres especiales.'
+            type: 'Este campo no acepta números ni caracteres especiales.'
         }
     },
-    lastNameValidation: function (lastname: string) {
+    lastNameValidation: function (lastname: string = '') {
         if (lastname.length < 1) {
             return {
                 error: true,
@@ -22,11 +22,11 @@ export const signupValidations = {
         }
         const invalidInput = /[^A-Za-zÀ-ÿ\s\u00f1\u00d1]/g;
         return {
-            error: (invalidInput.test(name)),
-            mssg: 'Este campo no acepta números ni caracteres especiales.'
+            error: (invalidInput.test(lastname)),
+            type: 'Este campo no acepta números ni caracteres especiales.'
         }
     },
-    passwordValidation: function (password: string) {
+    passwordValidation: function (password: string = '') {
         if (password.length < 1) {
             return {
                 error: true,
@@ -38,7 +38,7 @@ export const signupValidations = {
             type: 'La contraseña debe tener al menos 8 caracteres.'
         }
     },
-    emailValidation: function (email: string) {
+    emailValidation: function (email: string = '') {
         if (email.length < 1) {
             return {
                 error: true,
@@ -51,7 +51,7 @@ export const signupValidations = {
             type: 'El correo proporcionado debe ser institucional'
         }
     },
-    schoolValidation: function (school: string) {
+    schoolValidation: function (school: string = '') {
         return {
             error: (school.length < 1),
             type: 'Este campo es obligatorio'
@@ -64,5 +64,12 @@ export const signupValidations = {
         password: false,
         school: false,
         email: false,
+    },
+    errMsg: {
+        firstName: '',
+        lastName: '',
+        password: '',
+        school: '',
+        email: '',
     },
 };

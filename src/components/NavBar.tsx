@@ -19,7 +19,6 @@ import { NavBarClasses } from './NavBar.styles';
 export default function NavBar() {
     const classes = NavBarClasses();
     const [menuToggle, setMenuToggle] = useState<null | HTMLElement>(null);
-    const [isLogged, setLogged] = useState(false);
     const { user } = useContext(AuthContext);
 
     const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,8 +28,6 @@ export default function NavBar() {
     const handleMenuClose = () => {
         setMenuToggle(null);
     }
-
-    const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
     return (
         <div className={classes.root}>

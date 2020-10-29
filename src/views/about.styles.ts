@@ -1,5 +1,4 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
 
 export const aboutStyles = makeStyles((theme: Theme) =>
 createStyles({

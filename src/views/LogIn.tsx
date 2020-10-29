@@ -11,14 +11,48 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { CopyrightLabel } from '../components/CopyrightLabel';
 import { Link as RouterLink } from 'react-router-dom';
-
+// components
+import { CopyrightLabel } from '../components/CopyrightLabel';
+// hooks
+import { useLoginForm } from '../hooks/useLoginForm';
 // styles
 import { loginStyles } from './login.styles';
 
 export const LogIn = () => {
     const classes = loginStyles();
+    const {
+      inputValues,
+      handleInputChange,
+      passwordValidator,
+      emailValidator,
+      errEM, errPW, 
+    } = useLoginForm();
+    const {
+      email,
+      password
+    } = inputValues;
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      passwordValidator(password);
+      emailValidator(email);
+      if (areEmpty()) {
+        console.log('estan vacios');
+        return;
+      }
+      
+
+    }
+
+    const areEmpty = () => {
+      if (email.length < 1 ||
+        password.length < 1) {
+          return true;
+        } else {
+          return null;
+        }
+    }
 
     return (
       <Container component="main" maxWidth="xs">
@@ -30,16 +64,24 @@ export const LogIn = () => {
           <Typography component="h1" variant="h5">
             Ingresar
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
               required
+              placeholder="alumno1500@alumno.ipn.mx"
               fullWidth
               id="email"
               label="Correo institucional"
               name="email"
               autoComplete="email"
+              value={email || ''}
+              error={errEM}
+              onChange={(e: any) => {
+                handleInputChange(e);
+                emailValidator(e.currentTarget.value);
+              }}
+              helperText="Ingresa un correo institucional."
               autoFocus
             />
             <TextField
@@ -47,11 +89,18 @@ export const LogIn = () => {
               margin="normal"
               required
               fullWidth
+              value={password || ''}
               name="password"
               label="Contraseña"
               type="password"
               id="password"
+              error={errPW}
+              helperText="Escribe tu contraseña"
               autoComplete="current-password"
+              onChange={(e: any) => {
+                handleInputChange(e);
+                passwordValidator(e.currentTarget.value);
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

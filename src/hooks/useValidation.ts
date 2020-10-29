@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
 
-export const useValidation = (initState: any, initErrors: any) => {
+export const useValidation = (initState: any, initErrors: any, initErrMsg: any) => {
     const [ inputValues, setInputValues ] = useState(initState);
     const [ errors, setErrors ] = useState(initErrors);
-    const [ errMessage, setErrMessage ] = useState({});
+    const [ errMessage, setErrMessage ] = useState(initErrMsg);
 
-   /* const validateInput = (e: React.FormEvent<HTMLInputElement>, validation: Function) => {
-        //const invalidInput = /[^A-Za-zÀ-ÿ\s\u00f1\u00d1]/g;
-        if (invalidInput.test(e.currentTarget.value)) {
-            setErrors({
-                ...errors,
-                [e.currentTarget.name]: true
-            });
-        } else {
-            setErrors({
-                ...errors,
-                [e.currentTarget.name]: false
-            });
-        }
-    }; */
     const handleInputChange = (e: React.FormEvent<HTMLInputElement>, validation: Function) => {
         setInputValues({
             ...inputValues,
             [e.currentTarget.name]: e.currentTarget.value
         });
-        if (validation(e.currentTarget.value)) {
+        const { error, type } = validation(e.currentTarget.value);
+        if (error) {
             setErrors({
                 ...errors,
                 [e.currentTarget.name]: true
+            });
+            setErrMessage({
+                ...errMessage,
+                [e.currentTarget.name]: type
             });
         } else {
             setErrors({
                 ...errors,
                 [e.currentTarget.name]: false
+            });
+            setErrMessage({
+                ...errMessage,
+                [e.currentTarget.name]: ''
             });
         }
     };
@@ -40,7 +35,8 @@ export const useValidation = (initState: any, initErrors: any) => {
     return [
         inputValues,
         handleInputChange,
-        errors
+        errors,
+        errMessage
     ];
 };
 
