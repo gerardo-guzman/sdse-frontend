@@ -9,9 +9,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
-
 // styles
 import { aboutStyles } from './about.styles';
+// assets
 import gerardoPh from '../assets/img/gerardo1.jpg';
 
 export const About = () => {
