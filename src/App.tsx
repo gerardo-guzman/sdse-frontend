@@ -6,7 +6,7 @@ import { AppRoutes } from './routes/App.Routes';
 
 
 // styles
-import './App.css';
+import './app.css';
 import { authReducer } from './auth/authReducer';
 
 const init = () => {
