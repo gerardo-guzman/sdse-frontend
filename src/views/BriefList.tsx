@@ -17,6 +17,12 @@ export const BriefList = ({ history }: any) => {
                 <Grid item xs={12} >
                     <BriefComponent />
                 </Grid>
+                <Grid item xs={12} >
+                    <BriefComponent />
+                </Grid>
+                <Grid item xs={12} >
+                    <BriefComponent />
+                </Grid>
             </Grid>
         </div>
     )

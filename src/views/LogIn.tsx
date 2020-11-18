@@ -37,7 +37,7 @@ export const LogIn = () => {
       e.preventDefault();
       passwordValidator(password);
       emailValidator(email);
-      if (areEmpty()) {
+      if (areEmpty()) {    
         console.log('estan vacios');
         return;
       }
